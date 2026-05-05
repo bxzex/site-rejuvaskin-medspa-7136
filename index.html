@@ -1591,7 +1591,7 @@
         }
 
         /* ==========================================
-           MANDATORY MOBILE OVERRIDES
+           MANDATORY MOBILE & TABLET OVERRIDES
            ========================================== */
         *, *::before, *::after { box-sizing: border-box; }
         html, body { overflow-x: hidden !important; width: 100%; margin: 0; padding: 0; }
@@ -1599,26 +1599,54 @@
         a { color: inherit; text-decoration: none; }
         
         /* DESKTOP NAV DEFAULTS */
-        nav, header { position: fixed !important; top: 0 !important; left: 0 !important; width: 100% !important; z-index: 9999 !important; display: flex !important; justify-content: space-between !important; align-items: center !important; padding: 1rem 5% !important; background: rgba(251, 250, 246, 0.9) !important; backdrop-filter: blur(20px) !important; box-sizing: border-box !important; border-bottom: 1px solid rgba(0,0,0,0.05); }
+        header { position: fixed !important; top: 0 !important; left: 0 !important; width: 100% !important; z-index: 9999 !important; display: flex !important; justify-content: space-between !important; align-items: center !important; padding: 1rem 5% !important; background: rgba(251, 250, 246, 0.9) !important; backdrop-filter: blur(20px) !important; box-sizing: border-box !important; border-bottom: 1px solid rgba(0,0,0,0.05); }
         body { padding-top: 80px !important; }
         .hamburger, .menu-toggle, .mobile-menu-btn { display: none !important; }
         .sidebar, .side-bar, .sticky-sidebar { display: flex; }
         section, .section { padding: clamp(4rem, 8vh, 8rem) 5% !important; width: 100% !important; box-sizing: border-box !important; overflow: hidden; }
         h1, h2, h3 { overflow-wrap: break-word; word-break: break-word; max-width: 100%; }
 
-        /* MOBILE OVERRIDES */
-        @media (max-width: 768px) {
-            nav, header { padding: 15px !important; background: rgba(251, 250, 246, 0.98) !important; border-bottom: 1px solid rgba(0,0,0,0.05); }
-            nav .logo, nav .brand, header .logo { font-size: 1.2rem !important; max-width: 50vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-right: auto; }
-            nav .nav-links, nav .desktop-nav, nav ul, .nav-actions .status-badge { display: none !important; }
-            .hamburger, .menu-toggle, .mobile-menu-btn { display: flex !important; align-items: center; justify-content: center; font-size: 24px; color: var(--text-main); background: none; border: none; cursor: pointer; z-index: 101; margin-left: 15px; }
+        /* TABLET OVERRIDES (max-width: 1024px) */
+        @media (max-width: 1024px) {
+            .nav-links, .nav-actions { display: none !important; }
+            .hamburger { display: flex !important; align-items: center; justify-content: center; font-size: 24px; color: var(--text-main); background: none; border: none; cursor: pointer; z-index: 101; margin-left: auto; }
+            header .logo { margin-right: auto; }
             
-            .hero { min-height: auto !important; padding-top: 100px !important; justify-content: flex-start !important; gap: 2rem !important; }
-            .hero h1, .hero-title { font-size: clamp(2.5rem, 8vw, 3.5rem) !important; margin-bottom: 1rem !important; }
-            .hero p, .hero-subtitle { font-size: 1rem !important; margin-bottom: 1.5rem !important; }
+            .hero { grid-template-columns: 1fr !important; text-align: center; padding-top: 120px !important; }
+            .hero-content { display: flex; flex-direction: column; align-items: center; }
+            .hero p { max-width: 100%; }
             .hero-image-wrapper { height: 50vh; }
             
-            [class*="grid"], [class*="row"], .about, .spotlight, .location-grid, .features-grid, .services-grid, .team-grid, .gallery-grid, .bento-grid, .footer-grid, .footer-columns, .hero { grid-template-columns: 1fr !important; display: flex !important; flex-direction: column !important; }
+            .about { grid-template-columns: 1fr !important; gap: 3rem !important; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+            .features-grid { grid-template-columns: repeat(2, 1fr) !important; }
+            .services-grid { grid-template-columns: repeat(2, 1fr) !important; }
+            .team-grid { grid-template-columns: repeat(2, 1fr) !important; }
+            .bento-grid { grid-template-columns: repeat(2, 1fr) !important; }
+            .bento-item:nth-child(n) { grid-column: span 1 !important; grid-row: span 1 !important; }
+            .spotlight { grid-template-columns: 1fr !important; }
+            .reviews-grid { grid-template-columns: repeat(2, 1fr) !important; }
+            .location-grid { grid-template-columns: 1fr !important; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr) !important; }
+            
+            .mobile-sticky-cta { display: block !important; position: fixed; bottom: 0; left: 0; width: 100%; background: var(--primary); z-index: 9998; padding: 15px; text-align: center; box-shadow: 0 -5px 20px rgba(0,0,0,0.1); }
+            .mobile-sticky-cta a { color: var(--white); font-family: var(--font-heading); font-size: 1.2rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; display: block; width: 100%; }
+            
+            [class*="chat-widget"], [class*="floating-chat"], #chat-widget { bottom: 90px !important; right: 15px !important; }
+            .sidebar, .side-bar, .sticky-sidebar { display: none !important; }
+        }
+
+        /* MOBILE OVERRIDES (max-width: 768px) */
+        @media (max-width: 768px) {
+            header { padding: 15px 5% !important; background: rgba(251, 250, 246, 0.98) !important; border-bottom: 1px solid rgba(0,0,0,0.05); }
+            header .logo { font-size: 1.2rem !important; max-width: 60vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+            
+            .hero { min-height: auto !important; padding-top: 100px !important; gap: 2rem !important; }
+            .hero h1, .hero-title { font-size: clamp(2.5rem, 8vw, 3.5rem) !important; margin-bottom: 1rem !important; }
+            .hero p, .hero-subtitle { font-size: 1rem !important; margin-bottom: 1.5rem !important; }
+            .hero-image-wrapper { height: 40vh; }
+            
+            [class*="grid"], [class*="row"], .about, .spotlight, .location-grid, .features-grid, .services-grid, .team-grid, .gallery-grid, .bento-grid, .footer-grid, .footer-columns { grid-template-columns: 1fr !important; display: flex !important; flex-direction: column !important; }
             [class*="grid"] > *, .bento-grid > *, .gallery-grid > * { grid-column: span 1 !important; grid-row: span 1 !important; width: 100% !important; }
             
             .about-image { height: 400px; }
@@ -1629,34 +1657,6 @@
             footer { padding: 4rem 5% 6rem !important; }
             .hero-buttons, .hero-cta, .hero .btn-group, .hero-actions { display: flex !important; flex-direction: column !important; align-items: center; width: 100%; padding: 0; }
             .hero-buttons a, .hero-buttons button, .hero .btn-group a { width: 100% !important; max-width: 100%; text-align: center; box-sizing: border-box; margin: 0 0 15px 0 !important; }
-            
-            [class*="chat-widget"], [class*="floating-chat"], #chat-widget { bottom: 90px !important; right: 15px !important; }
-            .sidebar, .side-bar, .sticky-sidebar { display: none !important; }
-            .cursor-dot, .cursor-outline { display: none !important; }
-
-            /* Mobile Sticky CTA */
-            .mobile-sticky-cta {
-                display: block;
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                width: 100%;
-                background: var(--primary);
-                z-index: 9998;
-                padding: 15px;
-                text-align: center;
-                box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
-            }
-            .mobile-sticky-cta a {
-                color: var(--white);
-                font-family: var(--font-heading);
-                font-size: 1.2rem;
-                font-weight: 700;
-                text-transform: uppercase;
-                letter-spacing: 2px;
-                display: block;
-                width: 100%;
-            }
         }
     </style>
 </head>
