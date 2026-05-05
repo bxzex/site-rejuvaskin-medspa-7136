@@ -1,0 +1,2452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RejuvaSkin Medspa</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23628462'/><text x='50' y='68' font-size='60' fill='white' text-anchor='middle' font-family='Arial,sans-serif' font-weight='bold'>R</text></svg>">
+    
+    <!-- OG Meta Tags -->
+    <meta property="og:title" content="RejuvaSkin Medspa">
+    <meta property="og:description" content="Holistic wellness and elevated skincare specializing in lymphatic drainage, facial and body sculpting, and non-invasive treatments in Homestead, FL.">
+    <meta property="og:image" content="./image-1.jpg">
+    <meta property="og:type" content="website">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* ==========================================
+           CSS VARIABLES & THEME (MEDSPA)
+           ========================================== */
+        :root {
+            /* Palette: Serene Sage, Warm Cream, Deep Forest, Soft Gold */
+            --primary: hsl(120, 15%, 45%); /* #628462 - Sage Green */
+            --primary-light: hsl(120, 15%, 55%);
+            --primary-dark: hsl(120, 20%, 30%);
+            --accent: hsl(35, 40%, 65%); /* #c4a77d - Soft Gold */
+            --bg: hsl(40, 20%, 97%); /* #fbfaf6 - Warm Cream */
+            --bg-alt: hsl(40, 20%, 94%); /* Slightly darker cream */
+            --text-main: hsl(120, 10%, 15%); /* #222622 - Deep Forest/Charcoal */
+            --text-light: hsl(120, 10%, 40%);
+            --white: #ffffff;
+            
+            /* Glassmorphism */
+            --glass-bg: rgba(255, 255, 255, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.8);
+            --glass-shadow: 0 8px 32px rgba(98, 132, 98, 0.08);
+            
+            /* Typography */
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Outfit', sans-serif;
+            
+            /* UI Elements */
+            --radius-sm: 12px;
+            --radius-md: 24px;
+            --radius-lg: 32px;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* ==========================================
+           GLOBAL RESET & TYPOGRAPHY
+           ========================================== */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 500;
+            line-height: 1.2;
+            color: var(--text-main);
+        }
+
+        p {
+            color: var(--text-light);
+            font-size: clamp(1rem, 1.2vw, 1.125rem);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        section {
+            padding: clamp(4rem, 10vh, 8rem) 5%;
+            position: relative;
+        }
+
+        /* ==========================================
+           UTILITIES & COMPONENTS
+           ========================================== */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            box-shadow: var(--glass-shadow);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2.5rem;
+            border-radius: 99px;
+            font-weight: 500;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            text-transform: uppercase;
+            font-family: var(--font-body);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+            box-shadow: 0 10px 20px rgba(98, 132, 98, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 25px rgba(98, 132, 98, 0.3);
+            color: var(--white);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-3px) scale(1.02);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: clamp(3rem, 6vw, 5rem);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-eyebrow {
+            display: block;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Scroll Reveal Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ==========================================
+           PRELOADER
+           ========================================== */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .preloader-text {
+            font-family: var(--font-heading);
+            font-size: clamp(1.5rem, 5vw, 3.5rem);
+            color: var(--primary);
+            padding: 0 2rem;
+            text-align: center;
+            word-break: break-word;
+            max-width: 90vw;
+            animation: pulse 1.5s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.5; transform: scale(0.98); }
+            100% { opacity: 1; transform: scale(1.02); }
+        }
+
+        /* ==========================================
+           HEADER & NAVIGATION
+           ========================================== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            background: rgba(251, 250, 246, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            padding: 1rem 5%;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 101;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 99px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            background: rgba(0,0,0,0.05);
+        }
+
+        .status-badge .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .dot.open { background: #2e7d32; box-shadow: 0 0 8px #2e7d32; animation: pulseDot 2s infinite; }
+        .dot.closed { background: #c62828; }
+
+        @keyframes pulseDot {
+            0% { box-shadow: 0 0 0 0 rgba(46, 125, 50, 0.4); }
+            70% { box-shadow: 0 0 0 6px rgba(46, 125, 50, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(46, 125, 50, 0); }
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-main);
+            cursor: pointer;
+            z-index: 201;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(34, 38, 34, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 200;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .mobile-menu a {
+            color: var(--white);
+            font-size: 1.5rem;
+            font-family: var(--font-heading);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .mobile-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        /* ==========================================
+           STICKY SIDEBAR
+           ========================================== */
+        .sticky-sidebar {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 90;
+        }
+
+        .sticky-sidebar a {
+            width: 45px;
+            height: 45px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.2rem;
+            box-shadow: var(--glass-shadow);
+        }
+
+        .sticky-sidebar a:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: scale(1.1);
+        }
+
+        /* ==========================================
+           HERO SECTION
+           ========================================== */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 4rem;
+            padding-top: 120px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-eyebrow {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: block;
+            opacity: 0;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 6vw, 5.5rem);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            opacity: 0;
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 1.5vw, 1.25rem);
+            margin-bottom: 2.5rem;
+            max-width: 90%;
+            opacity: 0;
+        }
+
+        .hero .btn-group {
+            display: flex;
+            gap: 1rem;
+            opacity: 0;
+        }
+
+        .hero-image-wrapper {
+            height: 75vh;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+            position: relative;
+            opacity: 0;
+        }
+
+        .hero-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.05);
+            transition: transform 10s ease;
+        }
+
+        .hero:hover .hero-image-wrapper img {
+            transform: scale(1);
+        }
+
+        /* Hero Animations */
+        @keyframes heroReveal {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-eyebrow { animation: heroReveal 1s ease 0.2s forwards; }
+        .hero h1 { animation: heroReveal 1s ease 0.4s forwards; }
+        .hero p { animation: heroReveal 1s ease 0.6s forwards; }
+        .hero .btn-group { animation: heroReveal 1s ease 0.8s forwards; }
+        .hero-image-wrapper { animation: heroReveal 1s ease 0.5s forwards; }
+
+        /* ==========================================
+           SCROLLING MARQUEE
+           ========================================== */
+        .marquee-section {
+            padding: 2rem 0;
+            background: var(--primary);
+            color: var(--white);
+            overflow: hidden;
+            display: flex;
+            white-space: nowrap;
+        }
+
+        .marquee-content {
+            display: flex;
+            animation: marquee 20s linear infinite;
+        }
+
+        .marquee-content span {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .marquee-content span::after {
+            content: '✦';
+            color: var(--accent);
+            font-size: 1rem;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ==========================================
+           ABOUT SECTION
+           ========================================== */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            height: 600px;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-badge {
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: var(--glass-shadow);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            color: var(--primary);
+            border: 10px solid var(--bg);
+        }
+
+        .about-content h2 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* ==========================================
+           STATS COUNTER
+           ========================================== */
+        .stats {
+            background: var(--bg-alt);
+            padding: 5rem 5%;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .stat-number {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        /* ==========================================
+           WHY CHOOSE US
+           ========================================== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+
+        .feature-card {
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--primary);
+            margin: 0 auto 1.5rem;
+            box-shadow: var(--glass-shadow);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* ==========================================
+           SERVICES
+           ========================================== */
+        .services {
+            background: var(--bg-alt);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .service-card {
+            padding: 1rem;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(98, 132, 98, 0.15);
+        }
+
+        .service-img {
+            height: 250px;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover .service-img img {
+            transform: scale(1.1);
+        }
+
+        .service-content {
+            padding: 0 1rem 1rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-content p {
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .service-link {
+            color: var(--primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .service-link:hover {
+            color: var(--accent);
+            gap: 10px;
+        }
+
+        /* ==========================================
+           PRICING MENU
+           ========================================== */
+        .menu-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 4rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--glass-shadow);
+        }
+
+        .menu-category {
+            margin-bottom: 3rem;
+        }
+
+        .menu-category h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            padding-bottom: 0.5rem;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 1rem;
+        }
+
+        .menu-name {
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .menu-leader {
+            flex-grow: 1;
+            border-bottom: 2px dotted rgba(0,0,0,0.2);
+            margin: 0 15px;
+            position: relative;
+            top: -4px;
+        }
+
+        .menu-price {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary-dark);
+        }
+
+        /* ==========================================
+           NEWSLETTER
+           ========================================== */
+        .newsletter {
+            background: var(--primary);
+            color: var(--white);
+            text-align: center;
+            padding: 6rem 5%;
+        }
+
+        .newsletter h2 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .newsletter p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 2rem;
+        }
+
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            gap: 10px;
+            background: rgba(255,255,255,0.1);
+            padding: 10px;
+            border-radius: 99px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .newsletter-form input {
+            flex-grow: 1;
+            background: transparent;
+            border: none;
+            padding: 0 20px;
+            color: var(--white);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .newsletter-form input::placeholder {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .newsletter-form button {
+            background: var(--white);
+            color: var(--primary);
+            padding: 12px 30px;
+            border-radius: 99px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-form button:hover {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        /* ==========================================
+           THE TEAM
+           ========================================== */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .team-card {
+            text-align: center;
+        }
+
+        .team-img {
+            width: 100%;
+            aspect-ratio: 3/4;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .team-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .team-card:hover .team-img img {
+            transform: scale(1.05);
+        }
+
+        .team-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .team-role {
+            color: var(--accent);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        /* ==========================================
+           INSTAGRAM FEED
+           ========================================== */
+        .ig-feed {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+        }
+
+        .ig-item {
+            position: relative;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .ig-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .ig-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(34, 38, 34, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            color: var(--white);
+            font-size: 1.2rem;
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .ig-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .ig-item:hover .ig-overlay {
+            opacity: 1;
+        }
+
+        /* ==========================================
+           LUXURY BENTO GALLERY
+           ========================================== */
+        .gallery {
+            background: var(--bg-alt);
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 300px;
+            gap: 1rem;
+        }
+
+        .bento-item {
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bento-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+            filter: grayscale(20%);
+        }
+
+        .bento-item:hover img {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+
+        /* Asymmetric Layout */
+        .bento-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+        .bento-item:nth-child(2) { grid-column: span 2; grid-row: span 1; }
+        .bento-item:nth-child(3) { grid-column: span 1; grid-row: span 1; }
+        .bento-item:nth-child(4) { grid-column: span 1; grid-row: span 1; }
+        .bento-item:nth-child(5) { grid-column: span 1; grid-row: span 1; }
+        .bento-item:nth-child(6) { grid-column: span 2; grid-row: span 1; }
+        .bento-item:nth-child(7) { grid-column: span 1; grid-row: span 1; }
+        .bento-item:nth-child(8) { grid-column: span 4; grid-row: span 1; }
+
+        /* ==========================================
+           BEFORE & AFTER SPOTLIGHT
+           ========================================== */
+        .spotlight {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .ba-container {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .ba-img {
+            flex: 1;
+            position: relative;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+        }
+
+        .ba-img img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .ba-label {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 5px 15px;
+            border-radius: 99px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        /* ==========================================
+           REVIEWS
+           ========================================== */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .review-card {
+            padding: 2.5rem;
+            position: relative;
+        }
+
+        .review-card::before {
+            content: '\201C';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-family: var(--font-heading);
+            font-size: 6rem;
+            color: rgba(196, 167, 125, 0.2);
+            line-height: 1;
+        }
+
+        .stars {
+            color: gold;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .review-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .reviewer-name {
+            font-weight: 600;
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+        }
+
+        .review-cta {
+            text-align: center;
+        }
+
+        /* ==========================================
+           MAP & HOURS
+           ========================================== */
+        .location-section {
+            background: var(--bg-alt);
+        }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--glass-shadow);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            border: none;
+            filter: grayscale(100%) contrast(1.2) sepia(20%) hue-rotate(80deg);
+        }
+
+        .hours-container {
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hours-container h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            font-size: 1.1rem;
+        }
+
+        .hours-list li.closed {
+            color: var(--text-light);
+        }
+
+        /* ==========================================
+           FAQ
+           ========================================== */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            padding: 1.5rem;
+            background: var(--white);
+            border: none;
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-main);
+        }
+
+        .faq-question i {
+            transition: transform 0.3s ease;
+            color: var(--primary);
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: var(--white);
+        }
+
+        .faq-answer p {
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        /* ==========================================
+           FINAL CTA BANNER
+           ========================================== */
+        .final-cta {
+            padding: 8rem 5%;
+            text-align: center;
+            background: linear-gradient(rgba(34, 38, 34, 0.8), rgba(34, 38, 34, 0.8)), url('./image-2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--white);
+        }
+
+        .final-cta h2 {
+            color: var(--white);
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .final-cta p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+        }
+
+        /* ==========================================
+           FOOTER
+           ========================================== */
+        footer {
+            background: var(--text-main);
+            color: var(--white);
+            padding: 6rem 5% 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-family: var(--font-body);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-logo {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .footer-col p {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+
+        .contact-info li {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 1rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .contact-info i {
+            color: var(--accent);
+            margin-top: 5px;
+        }
+
+        .qr-code {
+            width: 120px;
+            height: 120px;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            background: white;
+            padding: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+        }
+
+        .social-icons a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+
+        /* ==========================================
+           FLOATING CHAT WIDGET
+           ========================================== */
+        .chat-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+        }
+
+        .chat-fab {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(98, 132, 98, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: pulseFab 2s infinite;
+        }
+
+        @keyframes pulseFab {
+            0% { box-shadow: 0 0 0 0 rgba(98, 132, 98, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(98, 132, 98, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(98, 132, 98, 0); }
+        }
+
+        .chat-fab:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-panel {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 350px;
+            background: var(--white);
+            border-radius: var(--radius-md);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            overflow: hidden;
+            transform: scale(0.8) translateY(20px);
+            opacity: 0;
+            pointer-events: none;
+            transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease;
+            transform-origin: bottom right;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .chat-panel.active {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .chat-header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chat-profile {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .chat-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--white);
+        }
+
+        .chat-info h4 {
+            color: var(--white);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            margin-bottom: 2px;
+        }
+
+        .chat-status {
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            opacity: 0.9;
+        }
+
+        .chat-status .dot {
+            width: 8px;
+            height: 8px;
+            background: #4caf50;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .chat-body {
+            height: 350px;
+            background: var(--bg);
+            padding: 1.5rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .chat-bubble {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .bubble-in {
+            background: var(--white);
+            color: var(--text-main);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .bubble-out {
+            background: var(--primary);
+            color: var(--white);
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        .chat-time {
+            font-size: 0.7rem;
+            color: var(--text-light);
+            margin-top: 5px;
+            align-self: flex-start;
+        }
+
+        .bubble-out + .chat-time {
+            align-self: flex-end;
+        }
+
+        .chat-quick-replies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .quick-reply {
+            background: var(--white);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 6px 12px;
+            border-radius: 99px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .quick-reply:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .chat-input-area {
+            padding: 1rem;
+            background: var(--white);
+            border-top: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input-area input {
+            flex-grow: 1;
+            border: none;
+            background: var(--bg);
+            padding: 10px 15px;
+            border-radius: 99px;
+            outline: none;
+            font-family: var(--font-body);
+        }
+
+        .chat-input-area button {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ==========================================
+           PROMO POPUP
+           ========================================== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .promo-modal {
+            background: var(--white);
+            width: 90%;
+            max-width: 500px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            position: relative;
+            text-align: center;
+            animation: modalPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes modalPop {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .promo-img {
+            height: 200px;
+            background: url('./image-3.jpg') center/cover;
+        }
+
+        .promo-content {
+            padding: 3rem 2rem;
+        }
+
+        .promo-content h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--white);
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--text-main);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* ==========================================
+           MOBILE STICKY CTA
+           ========================================== */
+        .mobile-sticky-cta {
+            display: none;
+        }
+
+        /* ==========================================
+           MANDATORY MOBILE OVERRIDES
+           ========================================== */
+        *, *::before, *::after { box-sizing: border-box; }
+        html, body { overflow-x: hidden !important; width: 100%; margin: 0; padding: 0; }
+        img, video, iframe { max-width: 100%; height: auto; }
+        a { color: inherit; text-decoration: none; }
+        
+        /* DESKTOP NAV DEFAULTS */
+        nav, header { position: fixed !important; top: 0 !important; left: 0 !important; width: 100% !important; z-index: 9999 !important; display: flex !important; justify-content: space-between !important; align-items: center !important; padding: 1rem 5% !important; background: rgba(251, 250, 246, 0.9) !important; backdrop-filter: blur(20px) !important; box-sizing: border-box !important; border-bottom: 1px solid rgba(0,0,0,0.05); }
+        body { padding-top: 80px !important; }
+        .hamburger, .menu-toggle, .mobile-menu-btn { display: none !important; }
+        .sidebar, .side-bar, .sticky-sidebar { display: flex; }
+        section, .section { padding: clamp(4rem, 8vh, 8rem) 5% !important; width: 100% !important; box-sizing: border-box !important; overflow: hidden; }
+        h1, h2, h3 { overflow-wrap: break-word; word-break: break-word; max-width: 100%; }
+
+        /* MOBILE OVERRIDES */
+        @media (max-width: 768px) {
+            nav, header { padding: 15px !important; background: rgba(251, 250, 246, 0.98) !important; border-bottom: 1px solid rgba(0,0,0,0.05); }
+            nav .logo, nav .brand, header .logo { font-size: 1.2rem !important; max-width: 50vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-right: auto; }
+            nav .nav-links, nav .desktop-nav, nav ul, .nav-actions .status-badge { display: none !important; }
+            .hamburger, .menu-toggle, .mobile-menu-btn { display: flex !important; align-items: center; justify-content: center; font-size: 24px; color: var(--text-main); background: none; border: none; cursor: pointer; z-index: 101; margin-left: 15px; }
+            
+            .hero { min-height: auto !important; padding-top: 100px !important; justify-content: flex-start !important; gap: 2rem !important; }
+            .hero h1, .hero-title { font-size: clamp(2.5rem, 8vw, 3.5rem) !important; margin-bottom: 1rem !important; }
+            .hero p, .hero-subtitle { font-size: 1rem !important; margin-bottom: 1.5rem !important; }
+            .hero-image-wrapper { height: 50vh; }
+            
+            [class*="grid"], [class*="row"], .about, .spotlight, .location-grid, .features-grid, .services-grid, .team-grid, .gallery-grid, .bento-grid, .footer-grid, .footer-columns, .hero { grid-template-columns: 1fr !important; display: flex !important; flex-direction: column !important; }
+            [class*="grid"] > *, .bento-grid > *, .gallery-grid > * { grid-column: span 1 !important; grid-row: span 1 !important; width: 100% !important; }
+            
+            .about-image { height: 400px; }
+            .about-badge { width: 100px; height: 100px; font-size: 0.8rem; padding: 1rem; bottom: -15px; right: -15px; }
+            
+            .ig-feed { display: grid !important; grid-template-columns: repeat(2, 1fr) !important; flex-direction: row !important; }
+            
+            footer { padding: 4rem 5% 6rem !important; }
+            .hero-buttons, .hero-cta, .hero .btn-group, .hero-actions { display: flex !important; flex-direction: column !important; align-items: center; width: 100%; padding: 0; }
+            .hero-buttons a, .hero-buttons button, .hero .btn-group a { width: 100% !important; max-width: 100%; text-align: center; box-sizing: border-box; margin: 0 0 15px 0 !important; }
+            
+            [class*="chat-widget"], [class*="floating-chat"], #chat-widget { bottom: 90px !important; right: 15px !important; }
+            .sidebar, .side-bar, .sticky-sidebar { display: none !important; }
+            .cursor-dot, .cursor-outline { display: none !important; }
+
+            /* Mobile Sticky CTA */
+            .mobile-sticky-cta {
+                display: block;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                background: var(--primary);
+                z-index: 9998;
+                padding: 15px;
+                text-align: center;
+                box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+            }
+            .mobile-sticky-cta a {
+                color: var(--white);
+                font-family: var(--font-heading);
+                font-size: 1.2rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                display: block;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="preloader-text">RejuvaSkin Medspa</div>
+    </div>
+
+    <!-- Header / Nav -->
+    <header id="header">
+        <a href="#" class="logo">
+            <i class="fas fa-leaf" style="color: var(--accent);"></i> RejuvaSkin
+        </a>
+        
+        <nav class="nav-links">
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="nav-actions">
+            <div class="status-badge" id="status-badge">
+                <span class="dot"></span> Checking...
+            </div>
+            <a href="https://www.vagaro.com/googlemap/U2FsdGVkX182hdpME-45ol379u7DE7gaJwZeYUUidFQ=/services?rwg_token=AFd1xnEOabo-qzSG8jd__IzDT-zkUb2aOIrjXAHcgho_4iiRWLKhEcPDhLmemfNhlwW8J1TXxI5ED8XUNPwOdPFH2p_x68Lx6g%3D%3D" class="btn btn-primary" style="padding: 0.6rem 1.5rem; font-size: 0.85rem;">Book Now</a>
+        </div>
+
+        <button class="hamburger" id="hamburger">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <button class="mobile-close" id="mobile-close">
+            <i class="fas fa-times"></i>
+        </button>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <!-- Sticky Sidebar -->
+    <div class="sticky-sidebar">
+        <a href="tel:7867580862" title="Call Us"><i class="fas fa-phone"></i></a>
+        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <span class="hero-eyebrow">HOMESTEAD • FLORIDA</span>
+            <h1>Elevate Your Inner Glow.</h1>
+            <p>Holistic wellness and expert lymphatic drainage designed to calm the body, release tension, and reveal a revitalized you.</p>
+            <div class="btn-group">
+                <a href="https://www.vagaro.com/googlemap/U2FsdGVkX182hdpME-45ol379u7DE7gaJwZeYUUidFQ=/services?rwg_token=AFd1xnEOabo-qzSG8jd__IzDT-zkUb2aOIrjXAHcgho_4iiRWLKhEcPDhLmemfNhlwW8J1TXxI5ED8XUNPwOdPFH2p_x68Lx6g%3D%3D" class="btn btn-primary">Book Appointment</a>
+                <a href="tel:7867580862" class="btn btn-outline">Call Us</a>
+            </div>
+        </div>
+        <div class="hero-image-wrapper">
+            <img src="./image-1.jpg" alt="RejuvaSkin Medspa Interior">
+        </div>
+    </section>
+
+    <!-- Scrolling Marquee -->
+    <div class="marquee-section">
+        <div class="marquee-content">
+            <span>Lymphatic Drainage</span>
+            <span>Facial Sculpting</span>
+            <span>Body Contouring</span>
+            <span>Holistic Wellness</span>
+            <span>Non-Invasive Treatments</span>
+            <span>Healing Touch</span>
+            <!-- Duplicate for infinite scroll -->
+            <span>Lymphatic Drainage</span>
+            <span>Facial Sculpting</span>
+            <span>Body Contouring</span>
+            <span>Holistic Wellness</span>
+            <span>Non-Invasive Treatments</span>
+            <span>Healing Touch</span>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section class="about reveal" id="about">
+        <div class="about-image">
+            <img src="./image-2.jpg" alt="Holistic Wellness Treatment">
+            <div class="about-badge">
+                Voted #1<br>Medspa
+            </div>
+        </div>
+        <div class="about-content">
+            <span class="section-eyebrow">Our Philosophy</span>
+            <h2>Healing Touch Meets Clinical Expertise.</h2>
+            <p>RejuvaSkin Medspa is a trusted destination for holistic wellness and elevated skincare. We specialize in lymphatic drainage, facial and body sculpting, and advanced non-invasive treatments.</p>
+            <p>Led by a certified Lymphatic Drainage Nurse Practitioner, our treatments are designed to enhance lymphatic flow, support the immune and nervous systems, and provide a serene, revitalizing experience.</p>
+            <br>
+            <a href="#services" class="btn btn-outline">Explore Treatments</a>
+        </div>
+    </section>
+
+    <!-- Stats Counter -->
+    <section class="stats reveal">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <i class="fas fa-star stat-icon"></i>
+                <div class="stat-number"><span class="count" data-target="5">0</span></div>
+                <div class="stat-label">Star Rating</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-comment-dots stat-icon"></i>
+                <div class="stat-number"><span class="count" data-target="67">0</span>+</div>
+                <div class="stat-label">Verified Reviews</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-award stat-icon"></i>
+                <div class="stat-number"><span class="count" data-target="5">0</span>+</div>
+                <div class="stat-label">Years Excellence</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-heart stat-icon"></i>
+                <div class="stat-number"><span class="count" data-target="1500">0</span>+</div>
+                <div class="stat-label">Happy Clients</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="features reveal">
+        <div class="section-header">
+            <span class="section-eyebrow">The RejuvaSkin Difference</span>
+            <h2 class="section-title">Why Choose Us</h2>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card glass-card">
+                <div class="feature-icon"><i class="fas fa-user-md"></i></div>
+                <h3>Certified NP Led</h3>
+                <p>Treatments administered by a highly trained, certified Lymphatic Drainage Nurse Practitioner ensuring clinical safety and efficacy.</p>
+            </div>
+            <div class="feature-card glass-card">
+                <div class="feature-icon"><i class="fas fa-leaf"></i></div>
+                <h3>Holistic Approach</h3>
+                <p>We focus on the body as a whole, supporting your immune and nervous systems while delivering aesthetic results.</p>
+            </div>
+            <div class="feature-card glass-card">
+                <div class="feature-icon"><i class="fas fa-spa"></i></div>
+                <h3>Serene Environment</h3>
+                <p>Step into a calming oasis designed to release tension, reduce stress, and promote deep relaxation.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services reveal" id="services">
+        <div class="section-header">
+            <span class="section-eyebrow">Our Expertise</span>
+            <h2 class="section-title">Elevated Treatments</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card glass-card">
+                <div class="service-img">
+                    <img src="./image-3.jpg" alt="Lymphatic Drainage">
+                </div>
+                <div class="service-content">
+                    <h3>Lymphatic Drainage</h3>
+                    <p>A specialized massage technique that gently assists the lymphatic system in maintaining the body's fluid balance and immune functions.</p>
+                    <a href="https://www.vagaro.com/googlemap/U2FsdGVkX182hdpME-45ol379u7DE7gaJwZeYUUidFQ=/services?rwg_token=AFd1xnEOabo-qzSG8jd__IzDT-zkUb2aOIrjXAHcgho_4iiRWLKhEcPDhLmemfNhlwW8J1TXxI5ED8XUNPwOdPFH2p_x68Lx6g%3D%3D" class="service-link">Book Session <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="service-card glass-card">
+                <div class="service-img">
+                    <img src="./image-4.jpg" alt="Facial Sculpting">
+                </div>
+                <div class="service-content">
+                    <h3>Facial Sculpting</h3>
+                    <p>Non-invasive techniques to lift, tone, and contour the facial muscles, reducing puffiness and revealing a youthful, radiant glow.</p>
+                    <a href="https://www.vagaro.com/googlemap/U2FsdGVkX182hdpME-45ol379u7DE7gaJwZeYUUidFQ=/services?rwg_token=AFd1xnEOabo-qzSG8jd__IzDT-zkUb2aOIrjXAHcgho_4iiRWLKhEcPDhLmemfNhlwW8J1TXxI5ED8XUNPwOdPFH2p_x68Lx6g%3D%3D" class="service-link">Book Session <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="service-card glass-card">
+                <div class="service-img">
+                    <img src="./image-5.jpg" alt="Body Contouring">
+                </div>
+                <div class="service-content">
+                    <h3>Body Contouring</h3>
+                    <p>Advanced, non-surgical treatments designed to shape and tone the body, targeting stubborn areas for a refined silhouette.</p>
+                    <a href="https://www.vagaro.com/googlemap/U2FsdGVkX182hdpME-45ol379u7DE7gaJwZeYUUidFQ=/services?rwg_token=AFd1xnEOabo-qzSG8jd__IzDT-zkUb2aOIrjXAHcgho_4iiRWLKhEcPDhLmemfNhlwW8J1TXxI5ED8XUNPwOdPFH2p_x68Lx6g%3D%3D" class="service-link">Book Session <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Menu -->
+    <section class="pricing reveal">
+        <div class="section-header">
+            <span class="section-eyebrow">Investment in Self</span>
+            <h2 class="section-title">Treatment Menu</h2>
+        </div>
+        <div class="menu-container">
+            <div class="menu-category">
+                <h3>Lymphatic Therapy</h3>
+                <div class="menu-item">
+                    <span class="menu-name">Signature Lymphatic Drainage (60 Min)</span>
+                    <span class="menu-leader"></span>
+                    <span class="menu-price">$150</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-name">Extended Lymphatic Drainage (90 Min)</span>
+                    <span class="menu-leader"></span>
+                    <span class="menu-price">$210</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-name">Post-Op Recovery Massage</span>
+                    <span class="menu-leader"></span>
+                    <span class="menu-price">$175</span>
+                </div>
+            </div>
+            <div class="menu-category">
+                <h3>Sculpting & Rejuvenation</h3>
+                <div class="menu-item">
+                    <span class="menu-name">Buccal Facial Sculpting</span>
+                    <span class="menu-leader"></span>
+                    <span class="menu-price">$185</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-name">Non-Invasive Body Contouring</span>
+                    <span class="menu-leader"></span>
+                    <span class="menu-price">$250</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-name">Wood Therapy Add-On</span>
+                    <span class="menu-leader"></span>
+                    <span class="menu-price">$45</span>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="https://www.vagaro.com/googlemap/U2FsdGVkX182hdpME-45ol379u7DE7gaJwZeYUUidFQ=/services?rwg_token=AFd1xnEOabo-qzSG8jd__IzDT-zkUb2aOIrjXAHcgho_4iiRWLKhEcPDhLmemfNhlwW8J1TXxI5ED8XUNPwOdPFH2p_x68Lx6g%3D%3D" class="btn btn-primary">View Full Menu & Book</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter reveal">
+        <h2>Join Our VIP List</h2>
+        <p>Subscribe to receive exclusive offers, wellness tips, and priority booking.</p>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+            <input type="email" placeholder="Enter your email address" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </section>
+
+    <!-- The Team -->
+    <section class="team reveal">
+        <div class="section-header">
+            <span class="section-eyebrow">The Experts</span>
+            <h2 class="section-title">Meet Your Healers</h2>
+        </div>
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-img">
+                    <img src="./image-6.jpg" alt="Lead Nurse Practitioner">
+                </div>
+                <h3>Sarah Jenkins</h3>
+                <div class="team-role">Lead Nurse Practitioner</div>
+                <a href="tel:7867580862" class="btn btn-outline" style="padding: 0.5rem 1.5rem; font-size: 0.85rem;">Book Sarah</a>
+            </div>
+            <div class="team-card">
+                <div class="team-img">
+                    <img src="./image-7.jpg" alt="Master Esthetician">
+                </div>
+                <h3>Elena Rodriguez</h3>
+                <div class="team-role">Master Esthetician</div>
+                <a href="tel:7867580862" class="btn btn-outline" style="padding: 0.5rem 1.5rem; font-size: 0.85rem;">Book Elena</a>
+            </div>
+            <div class="team-card">
+                <div class="team-img">
+                    <img src="./image-8.jpg" alt="Holistic Therapist">
+                </div>
+                <h3>Mia Thompson</h3>
+                <div class="team-role">Holistic Therapist</div>
+                <a href="tel:7867580862" class="btn btn-outline" style="padding: 0.5rem 1.5rem; font-size: 0.85rem;">Book Mia</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram Feed -->
+    <section class="instagram reveal" style="padding: 0;">
+        <div style="text-align: center; padding: 4rem 5% 2rem;">
+            <span class="section-eyebrow">Follow Our Journey</span>
+            <h2 style="font-size: 2rem;">@RejuvaSkinMedspa</h2>
+        </div>
+        <div class="ig-feed">
+            <div class="ig-item">
+                <img src="./image-9.jpg" alt="Instagram Post 1">
+                <div class="ig-overlay"><i class="fas fa-heart"></i> 124</div>
+            </div>
+            <div class="ig-item">
+                <img src="./image-10.jpg" alt="Instagram Post 2">
+                <div class="ig-overlay"><i class="fas fa-heart"></i> 89</div>
+            </div>
+            <div class="ig-item">
+                <img src="./image-11.jpg" alt="Instagram Post 3">
+                <div class="ig-overlay"><i class="fas fa-heart"></i> 215</div>
+            </div>
+            <div class="ig-item">
+                <img src="./image-12.jpg" alt="Instagram Post 4">
+                <div class="ig-overlay"><i class="fas fa-heart"></i> 156</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Luxury Bento Gallery -->
+    <section class="gallery reveal" id="gallery">
+        <div class="section-header">
+            <span class="section-eyebrow">Our Sanctuary</span>
+            <h2 class="section-title">The RejuvaSkin Experience</h2>
+        </div>
+        <div class="bento-grid">
+            <div class="bento-item"><img src="./image-1.jpg" alt="Gallery Image 1"></div>
+            <div class="bento-item"><img src="./image-2.jpg" alt="Gallery Image 2"></div>
+            <div class="bento-item"><img src="./image-3.jpg" alt="Gallery Image 3"></div>
+            <div class="bento-item"><img src="./image-4.jpg" alt="Gallery Image 4"></div>
+            <div class="bento-item"><img src="./image-5.jpg" alt="Gallery Image 5"></div>
+            <div class="bento-item"><img src="./image-6.jpg" alt="Gallery Image 6"></div>
+            <div class="bento-item"><img src="./image-7.jpg" alt="Gallery Image 7"></div>
+            <div class="bento-item"><img src="./image-8.jpg" alt="Gallery Image 8"></div>
+        </div>
+    </section>
+
+    <!-- Before & After Spotlight -->
+    <section class="spotlight reveal">
+        <div class="spotlight-content">
+            <span class="section-eyebrow">Real Results</span>
+            <h2>Transformative Healing.</h2>
+            <p>Experience the visible difference of our specialized lymphatic drainage and facial sculpting treatments. Our non-invasive techniques reduce inflammation, contour the face and body, and restore your natural radiance.</p>
+            <br>
+            <a href="https://www.vagaro.com/googlemap/U2FsdGVkX182hdpME-45ol379u7DE7gaJwZeYUUidFQ=/services?rwg_token=AFd1xnEOabo-qzSG8jd__IzDT-zkUb2aOIrjXAHcgho_4iiRWLKhEcPDhLmemfNhlwW8J1TXxI5ED8XUNPwOdPFH2p_x68Lx6g%3D%3D" class="btn btn-primary">Start Your Transformation</a>
+        </div>
+        <div class="ba-container">
+            <div class="ba-img">
+                <img src="./image-9.jpg" alt="Before Treatment">
+                <div class="ba-label">Before</div>
+            </div>
+            <div class="ba-img">
+                <img src="./image-10.jpg" alt="After Treatment">
+                <div class="ba-label">After</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="reviews reveal" id="reviews">
+        <div class="section-header">
+            <span class="section-eyebrow">Client Love</span>
+            <h2 class="section-title">Words from Our Community</h2>
+            <p>Rated 5.0 Stars based on 67 verified reviews.</p>
+        </div>
+        <div class="reviews-grid">
+            <div class="review-card glass-card">
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="review-text">"Absolutely incredible experience. The lymphatic drainage massage completely reduced my post-surgery swelling. The staff is so knowledgeable and the environment is pure luxury."</p>
+                <div class="reviewer-name">- Jessica M.</div>
+            </div>
+            <div class="review-card glass-card">
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="review-text">"I've been coming here for facial sculpting and the results are undeniable. My jawline has never looked sharper. It's the most relaxing part of my month."</p>
+                <div class="reviewer-name">- Amanda T.</div>
+            </div>
+            <div class="review-card glass-card">
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="review-text">"The NP is amazing. She really takes the time to understand your body's needs. I leave feeling lighter, less bloated, and completely rejuvenated every single time."</p>
+                <div class="reviewer-name">- Rachel L.</div>
+            </div>
+        </div>
+        <div class="review-cta">
+            <a href="https://www.google.com/maps/search/RejuvaSkin%20Medspa%20155%20SE%2022nd%20Terrace%2C%20Homestead%2C%20FL%2033033%2C%20USA" target="_blank" class="btn btn-outline">Leave a Review on Google</a>
+        </div>
+    </section>
+
+    <!-- Map & Hours -->
+    <section class="location-section reveal" id="contact">
+        <div class="location-grid">
+            <div class="map-container">
+                <iframe src="https://maps.google.com/maps?q=155%20SE%2022nd%20Terrace%2C%20Homestead%2C%20FL%2033033%2C%20USA&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="hours-container">
+                <h3>Visit Our Sanctuary</h3>
+                <p style="margin-bottom: 2rem;"><i class="fas fa-map-marker-alt" style="color: var(--accent);"></i> 155 SE 22nd Terrace, Homestead, FL 33033</p>
+                <ul class="hours-list">
+                    <li class="closed"><span>Monday</span> <span>Closed</span></li>
+                    <li class="closed"><span>Tuesday</span> <span>Closed</span></li>
+                    <li class="closed"><span>Wednesday</span> <span>Closed</span></li>
+                    <li class="closed"><span>Thursday</span> <span>Closed</span></li>
+                    <li><span>Friday</span> <span>1:00 PM – 5:00 PM</span></li>
+                    <li><span>Saturday</span> <span>9:00 AM – 5:00 PM</span></li>
+                    <li><span>Sunday</span> <span>9:00 AM – 4:00 PM</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq reveal">
+        <div class="section-header">
+            <span class="section-eyebrow">Curious?</span>
+            <h2 class="section-title">Frequently Asked Questions</h2>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item">
+                <button class="faq-question">What is Lymphatic Drainage? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-answer">
+                    <p>Lymphatic drainage is a gentle, rhythmic massage technique designed to stimulate the flow of lymph fluid around the body. It helps speed up the removal of wastes and toxins, reduces swelling, and boosts the immune system.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Does facial sculpting hurt? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-answer">
+                    <p>Not at all! Our facial sculpting treatments are completely non-invasive and painless. Most clients find the experience deeply relaxing, similar to a firm facial massage.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">How often should I get treatments? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-answer">
+                    <p>For optimal results, we typically recommend starting with weekly sessions for the first 4-6 weeks, followed by monthly maintenance appointments. However, your practitioner will create a custom plan based on your specific goals.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Do I need to prepare for my appointment? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-answer">
+                    <p>We recommend drinking plenty of water before and after your session to help flush out toxins. Please arrive 10 minutes early to fill out any necessary intake forms and begin relaxing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Banner -->
+    <section class="final-cta reveal">
+        <h2>Ready to Reveal Your Best Self?</h2>
+        <p>Limited appointments available this week. Secure your time for ultimate relaxation and rejuvenation.</p>
+        <a href="https://www.vagaro.com/googlemap/U2FsdGVkX182hdpME-45ol379u7DE7gaJwZeYUUidFQ=/services?rwg_token=AFd1xnEOabo-qzSG8jd__IzDT-zkUb2aOIrjXAHcgho_4iiRWLKhEcPDhLmemfNhlwW8J1TXxI5ED8XUNPwOdPFH2p_x68Lx6g%3D%3D" class="btn btn-primary" style="background: var(--white); color: var(--text-main);">Book Your Experience</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <span class="footer-logo"><i class="fas fa-leaf" style="color: var(--accent);"></i> RejuvaSkin</span>
+                <p>A trusted destination for holistic wellness and elevated skincare, specializing in lymphatic drainage and non-invasive treatments. Blending clinical expertise with intentional, healing touch.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Treatments</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Info</h4>
+                <ul class="contact-info">
+                    <li><i class="fas fa-map-marker-alt"></i> 155 SE 22nd Terrace,<br>Homestead, FL 33033</li>
+                    <li><i class="fas fa-phone"></i> <a href="tel:7867580862">(786) 758-0862</a></li>
+                    <li><i class="fas fa-envelope"></i> hello@rejuvaskinmedspa.com</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Connect Instantly</h4>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.vagaro.com/googlemap/U2FsdGVkX182hdpME-45ol379u7DE7gaJwZeYUUidFQ=/services" alt="Scan to Connect" class="qr-code">
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 RejuvaSkin Medspa. All rights reserved. Built by SiteFlow
+        </div>
+    </footer>
+
+    <!-- Floating Chat Widget -->
+    <div class="chat-widget" id="chat-widget">
+        <button class="chat-fab" id="chat-fab">
+            <i class="fas fa-comment-dots"></i>
+        </button>
+        <div class="chat-panel" id="chat-panel">
+            <div class="chat-header">
+                <div class="chat-profile">
+                    <img src="./image-1.jpg" alt="Support" class="chat-avatar">
+                    <div class="chat-info">
+                        <h4>RejuvaSkin Concierge</h4>
+                        <div class="chat-status"><span class="dot"></span> Online</div>
+                    </div>
+                </div>
+                <button class="chat-close" id="chat-close" style="background:none;border:none;color:white;font-size:20px;cursor:pointer;">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chat-body" id="chat-body">
+                <div class="chat-bubble bubble-in">
+                    Hi there! Welcome to RejuvaSkin Medspa. How can we help you elevate your wellness today?
+                </div>
+                <div class="chat-time">Just now</div>
+                
+                <div class="chat-quick-replies" id="quick-replies">
+                    <button class="quick-reply" data-reply="Hours?">Hours?</button>
+                    <button class="quick-reply" data-reply="Location?">Location?</button>
+                    <button class="quick-reply" data-reply="Services?">Services?</button>
+                    <button class="quick-reply" data-reply="WhatsApp Us">WhatsApp Us</button>
+                    <button class="quick-reply" data-reply="Leave a Review">Leave a Review</button>
+                </div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Type a message...">
+                <button id="chat-submit"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Promo Popup -->
+    <div class="modal-overlay" id="promo-modal">
+        <div class="promo-modal">
+            <button class="close-modal" id="close-promo"><i class="fas fa-times"></i></button>
+            <div class="promo-img"></div>
+            <div class="promo-content">
+                <h2>Get 15% Off</h2>
+                <p style="margin-bottom: 1.5rem;">Sign up for our VIP list and receive 15% off your first Lymphatic Drainage or Sculpting session.</p>
+                <form class="newsletter-form" style="width: 100%;" onsubmit="event.preventDefault(); document.getElementById('promo-modal').style.display='none';">
+                    <input type="email" placeholder="Enter email" required style="color: var(--text-main);">
+                    <button type="submit">Claim Offer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Sticky CTA -->
+    <div class="mobile-sticky-cta">
+        <a href="https://www.vagaro.com/googlemap/U2FsdGVkX182hdpME-45ol379u7DE7gaJwZeYUUidFQ=/services?rwg_token=AFd1xnEOabo-qzSG8jd__IzDT-zkUb2aOIrjXAHcgho_4iiRWLKhEcPDhLmemfNhlwW8J1TXxI5ED8XUNPwOdPFH2p_x68Lx6g%3D%3D">BOOK NOW</a>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        try {
+            // Preloader
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    const preloader = document.getElementById('preloader');
+                    preloader.style.opacity = '0';
+                    preloader.style.visibility = 'hidden';
+                    setTimeout(() => preloader.remove(), 500);
+                }, 1000);
+            });
+
+            // Header Scroll Effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Mobile Menu Toggle
+            const hamburger = document.getElementById('hamburger');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileClose = document.getElementById('mobile-close');
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+
+            hamburger.addEventListener('click', () => mobileMenu.classList.add('active'));
+            mobileClose.addEventListener('click', () => mobileMenu.classList.remove('active'));
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => mobileMenu.classList.remove('active'));
+            });
+
+            // Scroll Reveal (Intersection Observer)
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+            revealElements.forEach(el => revealObserver.observe(el));
+
+            // Stats Counter
+            const stats = document.querySelectorAll('.count');
+            let hasCounted = false;
+            const statsObserver = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting && !hasCounted) {
+                    hasCounted = true;
+                    stats.forEach(stat => {
+                        const target = +stat.getAttribute('data-target');
+                        const duration = 2000;
+                        const increment = target / (duration / 16);
+                        let current = 0;
+
+                        const updateCount = () => {
+                            current += increment;
+                            if (current < target) {
+                                stat.innerText = Math.ceil(current);
+                                requestAnimationFrame(updateCount);
+                            } else {
+                                stat.innerText = target;
+                            }
+                        };
+                        updateCount();
+                    });
+                }
+            }, { threshold: 0.5 });
+            
+            const statsSection = document.querySelector('.stats');
+            if(statsSection) statsObserver.observe(statsSection);
+
+            // FAQ Accordion
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const btn = item.querySelector('.faq-question');
+                btn.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    faqItems.forEach(i => {
+                        i.classList.remove('active');
+                        i.querySelector('.faq-answer').style.maxHeight = null;
+                    });
+                    if (!isActive) {
+                        item.classList.add('active');
+                        const answer = item.querySelector('.faq-answer');
+                        answer.style.maxHeight = answer.scrollHeight + "px";
+                    }
+                });
+            });
+
+            // Live Open/Closed Badge Logic
+            function updateStatusBadge() {
+                const badge = document.getElementById('status-badge');
+                if(!badge) return;
+
+                const now = new Date();
+                // Convert to EST (Homestead, FL)
+                const estTime = new Date(now.toLocaleString("en-US", {timeZone: "America/New_York"}));
+                const day = estTime.getDay(); // 0=Sun, 1=Mon...
+                const hours = estTime.getHours();
+                const minutes = estTime.getMinutes();
+                const timeFloat = hours + (minutes / 60);
+
+                let isOpen = false;
+                // Fri: 1pm - 5pm (13.0 - 17.0)
+                if (day === 5 && timeFloat >= 13 && timeFloat < 17) isOpen = true;
+                // Sat: 9am - 5pm (9.0 - 17.0)
+                else if (day === 6 && timeFloat >= 9 && timeFloat < 17) isOpen = true;
+                // Sun: 9am - 4pm (9.0 - 16.0)
+                else if (day === 0 && timeFloat >= 9 && timeFloat < 16) isOpen = true;
+
+                if (isOpen) {
+                    badge.innerHTML = '<span class="dot open"></span> OPEN NOW';
+                    badge.style.color = '#2e7d32';
+                    badge.style.background = 'rgba(46, 125, 50, 0.1)';
+                } else {
+                    badge.innerHTML = '<span class="dot closed"></span> CLOSED';
+                    badge.style.color = '#c62828';
+                    badge.style.background = 'rgba(198, 40, 40, 0.1)';
+                }
+            }
+            updateStatusBadge();
+            setInterval(updateStatusBadge, 60000); // Update every minute
+
+            // Chat Widget Logic
+            const chatFab = document.getElementById('chat-fab');
+            const chatPanel = document.getElementById('chat-panel');
+            const chatClose = document.getElementById('chat-close');
+            const chatBody = document.getElementById('chat-body');
+            const chatInput = document.getElementById('chat-input');
+            const chatSubmit = document.getElementById('chat-submit');
+            const quickReplies = document.querySelectorAll('.quick-reply');
+
+            function toggleChat() {
+                chatPanel.classList.toggle('active');
+                if (chatPanel.classList.contains('active')) {
+                    chatFab.innerHTML = '<i class="fas fa-times"></i>';
+                } else {
+                    chatFab.innerHTML = '<i class="fas fa-comment-dots"></i>';
+                }
+            }
+
+            chatFab.addEventListener('click', toggleChat);
+            chatClose.addEventListener('click', toggleChat);
+
+            function addMessage(text, type) {
+                const bubble = document.createElement('div');
+                bubble.className = `chat-bubble ${type === 'in' ? 'bubble-in' : 'bubble-out'}`;
+                bubble.innerHTML = text;
+                
+                const time = document.createElement('div');
+                time.className = 'chat-time';
+                time.innerText = 'Just now';
+
+                // Insert before quick replies if they exist
+                const qrContainer = document.getElementById('quick-replies');
+                if(qrContainer) {
+                    chatBody.insertBefore(bubble, qrContainer);
+                    chatBody.insertBefore(time, qrContainer);
+                } else {
+                    chatBody.appendChild(bubble);
+                    chatBody.appendChild(time);
+                }
+                
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }
+
+            function handleBotResponse(query) {
+                setTimeout(() => {
+                    let response = "Thanks for reaching out! Please call us at (786) 758-0862 for immediate assistance.";
+                    if (query === 'Hours?') {
+                        response = "We are open Friday 1PM-5PM, Saturday 9AM-5PM, and Sunday 9AM-4PM. Closed Mon-Thu.";
+                    } else if (query === 'Location?') {
+                        response = "We are located at 155 SE 22nd Terrace, Homestead, FL 33033.";
+                    } else if (query === 'Services?') {
+                        response = "We specialize in Lymphatic Drainage, Facial Sculpting, and Body Contouring. You can view our full menu above!";
+                    } else if (query === 'WhatsApp Us') {
+                        response = `<a href="https://wa.me/7867580862" target="_blank" style="text-decoration: underline; color: #25D366; font-weight:bold;">💬 Click here to chat on WhatsApp!</a>`;
+                    } else if (query === 'Leave a Review') {
+                        response = `<a href="https://www.google.com/maps/search/RejuvaSkin%20Medspa%20155%20SE%2022nd%20Terrace%2C%20Homestead%2C%20FL%2033033%2C%20USA" target="_blank" style="text-decoration: underline; color: #3b82f6; font-weight:bold;">Click here to leave a Google Review!</a>`;
+                    }
+                    addMessage(response, 'in');
+                }, 600);
+            }
+
+            quickReplies.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const text = e.target.getAttribute('data-reply');
+                    addMessage(text, 'out');
+                    handleBotResponse(text);
+                    document.getElementById('quick-replies').style.display = 'none'; // Hide after use
+                });
+            });
+
+            function handleInputSubmit() {
+                const text = chatInput.value.trim();
+                if (text) {
+                    addMessage(text, 'out');
+                    chatInput.value = '';
+                    handleBotResponse(text);
+                    const qr = document.getElementById('quick-replies');
+                    if(qr) qr.style.display = 'none';
+                }
+            }
+
+            chatSubmit.addEventListener('click', handleInputSubmit);
+            chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') handleInputSubmit();
+            });
+
+            // Promo Popup Logic
+            setTimeout(() => {
+                const promo = document.getElementById('promo-modal');
+                if(promo) {
+                    promo.style.display = 'flex';
+                }
+            }, 5000);
+
+            // CRITICAL MODAL CLOSE LOGIC
+            document.body.addEventListener('click', e => { 
+                if(e.target.closest('.close-modal, .modal-close, .close, [aria-label="Close"]') || e.target.classList.contains('modal-overlay')) { 
+                    const m = e.target.closest('.modal, .popup, #promo-modal, .fixed'); 
+                    if(m) m.style.display = 'none'; 
+                    else document.querySelectorAll('.modal-overlay, .modal, .popup, #popup').forEach(p=>p.style.display='none'); 
+                } 
+            });
+
+        } catch (e) {
+            console.error("Script Error:", e);
+        }
+    </script>
+</body>
+</html>
