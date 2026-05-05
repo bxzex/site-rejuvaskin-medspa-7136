@@ -238,7 +238,7 @@
             left: 0;
             width: 100%;
             padding: 1.5rem 5%;
-            z-index: 1000;
+            z-index: 10000;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -335,6 +335,7 @@
             color: var(--text-main);
             cursor: pointer;
             z-index: 201;
+            transition: var(--transition);
         }
 
         /* Mobile Menu */
@@ -343,10 +344,10 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            height: 100vh;
             background: rgba(34, 38, 34, 0.98);
             backdrop-filter: blur(20px);
-            z-index: 200;
+            z-index: 9998;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -354,6 +355,7 @@
             gap: 2rem;
             transform: translateX(100%);
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            padding-top: 60px;
         }
 
         .mobile-menu.active {
@@ -366,17 +368,6 @@
             font-family: var(--font-heading);
             text-transform: uppercase;
             letter-spacing: 2px;
-        }
-
-        .mobile-close {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
-            background: none;
-            border: none;
-            color: var(--white);
-            font-size: 2rem;
-            cursor: pointer;
         }
 
         /* ==========================================
@@ -1599,7 +1590,7 @@
         a { color: inherit; text-decoration: none; }
         
         /* DESKTOP NAV DEFAULTS */
-        header { position: fixed !important; top: 0 !important; left: 0 !important; width: 100% !important; z-index: 9999 !important; display: flex !important; justify-content: space-between !important; align-items: center !important; padding: 1rem 5% !important; background: rgba(251, 250, 246, 0.9) !important; backdrop-filter: blur(20px) !important; box-sizing: border-box !important; border-bottom: 1px solid rgba(0,0,0,0.05); }
+        header { position: fixed !important; top: 0 !important; left: 0 !important; width: 100% !important; z-index: 10000 !important; display: flex !important; justify-content: space-between !important; align-items: center !important; padding: 1rem 5% !important; background: rgba(251, 250, 246, 0.9) !important; backdrop-filter: blur(20px) !important; box-sizing: border-box !important; border-bottom: 1px solid rgba(0,0,0,0.05); }
         body { padding-top: 80px !important; }
         .hamburger, .menu-toggle, .mobile-menu-btn { display: none !important; }
         .sidebar, .side-bar, .sticky-sidebar { display: flex; }
@@ -1609,7 +1600,7 @@
         /* TABLET OVERRIDES (max-width: 1024px) */
         @media (max-width: 1024px) {
             .nav-links, .nav-actions { display: none !important; }
-            .hamburger { display: flex !important; align-items: center; justify-content: center; font-size: 24px; color: var(--text-main); background: none; border: none; cursor: pointer; z-index: 101; margin-left: auto; }
+            .hamburger { display: flex !important; align-items: center; justify-content: center; font-size: 24px; color: var(--text-main); background: none; border: none; cursor: pointer; z-index: 10001; margin-left: auto; }
             header .logo { margin-right: auto; }
             
             .hero { grid-template-columns: 1fr !important; text-align: center; padding-top: 120px !important; }
@@ -1695,9 +1686,6 @@
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobile-menu">
-        <button class="mobile-close" id="mobile-close">
-            <i class="fas fa-times"></i>
-        </button>
         <a href="#about">About</a>
         <a href="#services">Services</a>
         <a href="#gallery">Gallery</a>
@@ -2235,16 +2223,33 @@
                 }
             });
 
-            // Mobile Menu Toggle
+            // Mobile Menu Toggle Logic
             const hamburger = document.getElementById('hamburger');
             const mobileMenu = document.getElementById('mobile-menu');
-            const mobileClose = document.getElementById('mobile-close');
             const mobileLinks = mobileMenu.querySelectorAll('a');
 
-            hamburger.addEventListener('click', () => mobileMenu.classList.add('active'));
-            mobileClose.addEventListener('click', () => mobileMenu.classList.remove('active'));
+            function toggleMobileMenu() {
+                mobileMenu.classList.toggle('active');
+                const icon = hamburger.querySelector('i');
+                if (mobileMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            }
+
+            function closeMobileMenu() {
+                mobileMenu.classList.remove('active');
+                const icon = hamburger.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+
+            hamburger.addEventListener('click', toggleMobileMenu);
             mobileLinks.forEach(link => {
-                link.addEventListener('click', () => mobileMenu.classList.remove('active'));
+                link.addEventListener('click', closeMobileMenu);
             });
 
             // Scroll Reveal (Intersection Observer)
